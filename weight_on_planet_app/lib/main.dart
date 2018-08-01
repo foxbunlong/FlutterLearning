@@ -43,13 +43,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  final TextEditingController _weightController = TextEditingController();
+
   int radioValue = 0;
+  double _finalResult = 0.0;
 
   void handleRadioValueChanged(int value) {
     setState(() {
       radioValue = value;
 
       print(radioValue);
+
+      switch (radioValue) {
+        case 0:
+          _finalResult = calculateWeight(_weightController.text, 0.06);
+          break;
+        case 1:
+          _finalResult = calculateWeight(_weightController.text, 0.38);
+          break;
+        case 2:
+          _finalResult = calculateWeight(_weightController.text, 0.91);
+          break;
+      }
     });
   }
 
@@ -78,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: new Column(
                 children: <Widget>[
                   new TextField(
-                    controller: null,
+                    controller: _weightController,
                     keyboardType: TextInputType.number,
                     decoration: new InputDecoration(
                         labelText: 'Your weight on Earth',
@@ -118,7 +134,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: new TextStyle(color: Colors.white),
                       ),
                     ],
+                  ),
+
+                  new Padding(padding: new EdgeInsets.all(15.6)),
+                  // result text
+                  new Text(
+                    "Hello there",
+                    style: new TextStyle(
+                      color: Colors.white,
+                      fontSize: 19.4,
+                      fontWeight: FontWeight.w500
+                    ),
                   )
+
                 ],
               ),
             )
@@ -127,5 +155,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  double calculateWeight(String weight, double multiplier) {
+    if (weight.isNotEmpty && int.parse(weight) > 0) {
+      return int.parse(weight) * multiplier;
+    } else {
+      print("Wrong!");
+      return int.parse("180") * 0.38;
+    }
   }
 }
