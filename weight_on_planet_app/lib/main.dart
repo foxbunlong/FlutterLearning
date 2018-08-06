@@ -48,24 +48,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int radioValue = 0;
   double _finalResult = 0.0;
+  String _formatedText = "";
 
   void handleRadioValueChanged(int value) {
     setState(() {
       radioValue = value;
 
-      print(radioValue);
-
       switch (radioValue) {
         case 0:
           _finalResult = calculateWeight(_weightController.text, 0.06);
+          _formatedText = "Your weight on Pluto is ${_finalResult.toStringAsFixed(1)}";
           break;
         case 1:
           _finalResult = calculateWeight(_weightController.text, 0.38);
+          _formatedText = "Your weight on Mars is ${_finalResult.toStringAsFixed(1)}";
           break;
         case 2:
           _finalResult = calculateWeight(_weightController.text, 0.91);
+          _formatedText = "Your weight on Venus is ${_finalResult.toStringAsFixed(1)}";
           break;
       }
+
+      print(_finalResult);
     });
   }
 
@@ -139,7 +143,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   new Padding(padding: new EdgeInsets.all(15.6)),
                   // result text
                   new Text(
-                    "Hello there",
+                    _weightController.text.isEmpty ? "Please enter weight" : _formatedText + " lbs",
+                    //"$_formatedText lbs",
                     style: new TextStyle(
                       color: Colors.white,
                       fontSize: 19.4,
