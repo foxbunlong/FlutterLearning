@@ -105,6 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
+              onTap: () {
+                _showAlertMessage(context, "${features[index]['properties']['title']}");
+              },
             );
           },
         ),
@@ -115,6 +118,21 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void _showAlertMessage(BuildContext context, String message) {
+    var alert = new AlertDialog(
+      title: new Text('Quakes'),
+      content: new Text(message),
+      actions: <Widget>[
+        new FlatButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: new Text('OK'))
+      ],
+    );
+    showDialog(context: context, child: alert);
   }
 }
 
