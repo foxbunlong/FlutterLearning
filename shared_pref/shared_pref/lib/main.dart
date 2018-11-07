@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(new MyApp());
 
@@ -26,6 +27,31 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _enterDataField = new TextEditingController();
+  String _savedData = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    _loadSavedData();
+  }
+
+  _loadSavedData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    setState(() {
+      if (preferences.getString("data") != null && preferences.getString("data").isNotEmpty) {
+        _savedData = preferences.getString("data");
+      } else {
+        _savedData = "Empty!";
+      }
+    });
+  }
+
+  _saveData(String data) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('data', data);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,28 +76,13 @@ class _MyHomePageState extends State<MyHomePage> {
             new FlatButton(
               onPressed: () {
                 // Save to file
-//                writeData(_enterDataField.text);
+                _saveData(_enterDataField.text);
               },
               child: new Column(
                 children: <Widget>[
                   new Text('Save data'),
                   new Padding(padding: new EdgeInsets.all(14.5)),
-                  new FutureBuilder(
-                    builder:
-                        (BuildContext context, AsyncSnapshot<String> data) {
-                      if (data.hasData != null) {
-                        return new Text(
-                          data.data.toString(),
-                          style: new TextStyle(
-                              color: Colors.blueAccent
-                          ),
-                        );
-                      } else {
-                        return new Text("No data saved");
-                      }
-                    },
-//                    future: readData(),
-                  ),
+                  new Text(_savedData),
                 ],
               ),
             ),
