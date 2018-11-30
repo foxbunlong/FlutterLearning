@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:database_intro/models/User.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -33,11 +34,28 @@ class DatabaseHelper {
     Directory docDirectory = await getApplicationDocumentsDirectory();
     String path = join(docDirectory.path, "maindb.db");
 
-    var myDb = await openDatabase(path, version: 1, onCreate: _onCreate);
+    var ourDb = await openDatabase(path, version: 1, onCreate: _onCreate);
+    return ourDb;
   }
 
   void _onCreate(Database db, int version) async {
     await db.execute(
         "CREATE TABLE $tableUser($columnId INTEGER PRIMARY KEY, $columnUsername TEXT, $columnPassword TEXT)");
   }
+
+  // CRUD
+  // Insert
+  Future<int> saveUser(User user) async {
+    var dbClient = await db;
+    int res = await dbClient.insert("$tableUser", user.toMap());
+    return res;
+  }
+
+  Future<List> getAllUsers() async {
+    var dbClient = await db;
+    var result = await dbClient.rawQuery("SELECT * FROM $tableUser");
+
+    return result.toList();
+  }
+
 }

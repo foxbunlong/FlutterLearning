@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
+  <library name="Flutter Plugins">
     <CLASSES>
       <root url="file://F:/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-0.12.0" />
       <root url="file://F:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-0.4.1" />
