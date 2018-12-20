@@ -58,4 +58,33 @@ class DatabaseHelper {
     return result.toList();
   }
 
+  Future<int> getCount() async {
+    var dbClient = await db;
+    return Sqflite.firstIntValue(
+        await dbClient.rawQuery("SELECT COUNT(*) FROM $tableUser"));
+  }
+
+  Future<User> getUser(int userId) async {
+    var dbClient = await db;
+    var result = await dbClient.rawQuery("SELECT * FROM $tableUser WHERE $columnId = $userId");
+    if (result.length == 0) {
+      return null;
+    }
+    return new User.fromMap(result.first);
+  }
+
+  Future<int> deleteUser(int userId) async {
+    var dbClient = await db;
+    return await dbClient.delete(tableUser, where: "$columnId = ?", whereArgs: [userId]);
+  }
+
+  Future<int> updateUser(User user) async {
+    var dbClient = await db;
+    return await dbClient.update(tableUser, user.toMap(), where: "$columnId = ?", whereArgs: [user.id]);
+  }
+
+  Future close() async {
+    var dbClient = await db;
+    return dbClient.close();
+  }
 }
