@@ -15,11 +15,8 @@ void main() async {
   User ana = await db.getUser(1);
   print("Ana : ${ana.username}");
 
-  User anaUpdated = User.fromMap({
-    "username": "Update Ana" ,
-    "password": "Update passord",
-    "id": ana.id
-  });
+  User anaUpdated = User.fromMap(
+      {"username": "Update Ana", "password": "Update passord", "id": ana.id});
   await db.updateUser(anaUpdated);
 
 //  int userDeleted = await db.deleteUser(2); // = 0 if not found
@@ -69,11 +66,22 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         backgroundColor: Colors.lightGreen,
       ),
-      body: new Center(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
+      body: new ListView.builder(
+        itemCount: _users.length,
+        itemBuilder: (_, int position) {
+          return new Card(
+            color: Colors.white,
+            elevation: 2.0,
+            child: new ListTile(
+              leading: new CircleAvatar(
+                child: new Text("${User.fromMap(_users[position]).username.substring(0,1)}"),
+              ),
+              title: new Text("User: ${User.fromMap(_users[position]).username}"),
+              subtitle: new Text("ID: ${User.fromMap(_users[position]).id}"),
+              onTap: () => debugPrint("Click on ${User.fromMap(_users[position]).username}"),
+            ),
+          );
+        },
       ),
     );
   }
