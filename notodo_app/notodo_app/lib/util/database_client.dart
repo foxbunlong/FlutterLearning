@@ -14,7 +14,7 @@ class DatabaseHelper {
   // Config table
   final String tableNoDoItem = "noDoTbl";
   final String columnId = "id";
-  final String columnItemname = "itemname";
+  final String columnItemname = "itemName";
   final String columDateCreated = "dateCreated";
 
   // Private constructor to this class
@@ -45,9 +45,9 @@ class DatabaseHelper {
 
   // CRUD
   // Insert
-  Future<int> saveNoDoItem(NoDoItem NoDoItem) async {
+  Future<int> saveNoDoItem(NoDoItem noDoItem) async {
     var dbClient = await db;
-    int res = await dbClient.insert("$tableNoDoItem", NoDoItem.toMap());
+    int res = await dbClient.insert("$tableNoDoItem", noDoItem.toMap());
     return res;
   }
 
@@ -73,14 +73,14 @@ class DatabaseHelper {
     return new NoDoItem.fromMap(result.first);
   }
 
-  Future<int> deleteNoDoItem(int NoDoItemId) async {
+  Future<int> deleteNoDoItem(int noDoItemId) async {
     var dbClient = await db;
-    return await dbClient.delete(tableNoDoItem, where: "$columnId = ?", whereArgs: [NoDoItemId]);
+    return await dbClient.delete(tableNoDoItem, where: "$columnId = ?", whereArgs: [noDoItemId]);
   }
 
-  Future<int> updateNoDoItem(NoDoItem NoDoItem) async {
+  Future<int> updateNoDoItem(NoDoItem noDoItem) async {
     var dbClient = await db;
-    return await dbClient.update(tableNoDoItem, NoDoItem.toMap(), where: "$columnId = ?", whereArgs: [NoDoItem.id]);
+    return await dbClient.update(tableNoDoItem, noDoItem.toMap(), where: "$columnId = ?", whereArgs: [NoDoItem.id]);
   }
 
   Future close() async {

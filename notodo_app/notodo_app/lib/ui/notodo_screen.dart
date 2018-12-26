@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notodo_app/model/nodo_item.dart';
+import 'package:notodo_app/util/database_client.dart';
 
 class NoToDoScreen extends StatefulWidget {
   @override
@@ -7,7 +9,24 @@ class NoToDoScreen extends StatefulWidget {
 
 class _NoToDoScreenState extends State<NoToDoScreen> {
 
-//  final var _textEditingController = new TextFi
+  final TextEditingController _textEditingController = new TextEditingController();
+  var db = new DatabaseHelper();
+
+  @override
+  void initState() {
+    super.initState();
+    _readNoDoList();
+  }
+
+  void _handleSubmit(String input) async {
+    _textEditingController.clear();
+
+    NoDoItem noDoItem = new NoDoItem(input, DateTime.now().toIso8601String());
+    int savedItemId = await db.saveNoDoItem(noDoItem);
+
+    print("Item saved id: $savedItemId");
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +62,25 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
       actions: <Widget>[
         new FlatButton(
           onPressed: () {
-//            _handleSubmit(_textEditingController.text);
-//            _textEditingController.clear();
+            _handleSubmit(_textEditingController.text);
+            _textEditingController.clear();
           },
-          child: null,
-        )
+          child: Text("Save"),
+        ),
+        new FlatButton(onPressed: () => Navigator.pop(context), child: Text("Cancel"))
       ],
     );
+    
+    showDialog(context: context, builder: (_) { // _ is context
+      return alert;
+    });
+  }
+
+  _readNoDoList() async {
+    List items = await db.getAllNoDoItems();
+    items.forEach((item) {
+      NoDoItem noDoItem = NoDoItem.map(item);
+      print(noDoItem.itemName);
+    });
   }
 }
