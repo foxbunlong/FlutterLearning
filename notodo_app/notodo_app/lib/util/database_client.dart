@@ -43,14 +43,6 @@ class DatabaseHelper {
         "CREATE TABLE $tableNoDoItem($columnId INTEGER PRIMARY KEY, $columnItemname TEXT, $columDateCreated TEXT)");
   }
 
-  // CRUD
-  // Insert
-  Future<int> saveNoDoItem(NoDoItem noDoItem) async {
-    var dbClient = await db;
-    int res = await dbClient.insert("$tableNoDoItem", noDoItem.toMap());
-    return res;
-  }
-
   Future<List> getAllNoDoItems() async {
     var dbClient = await db;
     var result = await dbClient.rawQuery("SELECT * FROM $tableNoDoItem");
@@ -73,14 +65,22 @@ class DatabaseHelper {
     return new NoDoItem.fromMap(result.first);
   }
 
-  Future<int> deleteNoDoItem(int noDoItemId) async {
+  // CRUD
+  // Insert
+  Future<int> saveNoDoItem(NoDoItem noDoItem) async {
     var dbClient = await db;
-    return await dbClient.delete(tableNoDoItem, where: "$columnId = ?", whereArgs: [noDoItemId]);
+    int res = await dbClient.insert("$tableNoDoItem", noDoItem.toMap());
+    return res;
   }
 
   Future<int> updateNoDoItem(NoDoItem noDoItem) async {
     var dbClient = await db;
-    return await dbClient.update(tableNoDoItem, noDoItem.toMap(), where: "$columnId = ?", whereArgs: [NoDoItem.id]);
+    return await dbClient.update(tableNoDoItem, noDoItem.toMap(), where: "$columnId = ?", whereArgs: [noDoItem.id]);
+  }
+
+  Future<int> deleteNoDoItem(int noDoItemId) async {
+    var dbClient = await db;
+    return await dbClient.delete(tableNoDoItem, where: "$columnId = ?", whereArgs: [noDoItemId]);
   }
 
   Future close() async {
