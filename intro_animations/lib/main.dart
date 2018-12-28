@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro_animations/anim/counter_animation.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,27 +27,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 // with - interface
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> animation;
+class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
     super.initState();
-    controller = new AnimationController(
-      duration: const Duration(milliseconds: 1800),
-      vsync: this,
-    );
-
-    // .. same as call this object animation in another line
-    animation = new CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn)..addListener(() {
-      setState(() {
-
-      });
-    });
-
-    controller.forward();
   }
 
   @override
@@ -55,19 +40,15 @@ class _MyHomePageState extends State<MyHomePage>
       appBar: AppBar(
         title: Text(widget.title),
       ),
+//      body: Center(
+//        child: Text("Hello world",
+//        style: TextStyle(
+//          fontSize: 19.0 * animation.value
+//        ),),
+//      ), // This trailing comma makes auto-formatting nicer for build methods.
       body: Center(
-        child: Text("Hello world",
-        style: TextStyle(
-          fontSize: 19.0 * animation.value
-        ),),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: CounterAnimation(),
+      ),
     );
-  }
-
-  @override
-  void dispose() {
-    // need for heavy operation like Animation
-    controller.dispose();
-    super.dispose();
   }
 }
