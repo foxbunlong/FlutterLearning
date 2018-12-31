@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro_animations/anim/chain_animation.dart';
 import 'package:intro_animations/anim/counter_animation.dart';
 
 void main() => runApp(MyApp());
@@ -27,11 +28,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 // with - interface
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+
+  AnimationController controller;
+  Animation<double> animation;
 
   @override
   void initState() {
     super.initState();
+    controller = AnimationController(duration: Duration(milliseconds: 1800) , vsync: this);
+    animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward();
+      }
+    });
+    controller.forward();
   }
 
   @override
@@ -46,9 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
 //          fontSize: 19.0 * animation.value
 //        ),),
 //      ), // This trailing comma makes auto-formatting nicer for build methods.
-      body: Center(
-        child: CounterAnimation(),
-      ),
+
+    body: ChainAnimation(animation: animation)
+
+//      body: Center(
+//        child: CounterAnimation(),
+//      ),
     );
   }
 }
