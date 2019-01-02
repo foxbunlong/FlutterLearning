@@ -18,6 +18,10 @@ class JokeListing extends StatelessWidget {
             onTap: () => jokeSelectedCallback(joke),
             selected: jokeSelected == joke,
           ),
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(4.5),
+          ),
         );
       }).toList(),
     );

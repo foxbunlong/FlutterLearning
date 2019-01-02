@@ -13,7 +13,7 @@ class Joke {
   final String setup;
   final String punchline;
 
-  final List<Joke> jokesList = <Joke>[
+  static final List<Joke> jokesList = <Joke>[
     Joke(
         id: 1,
         type: "general",
