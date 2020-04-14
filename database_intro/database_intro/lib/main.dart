@@ -9,8 +9,8 @@ List _users;
 void main() async {
   var db = new DatabaseHelper();
 
-//  int savedUser = await db.saveUser(new User("Ana", "password"));
-//  print("User saved $savedUser");
+  int savedUser = await db.saveUser(new User("Ana", "password"));
+  print("User saved $savedUser");
 
   User ana = await db.getUser(1);
   print("Ana : ${ana.username}");
