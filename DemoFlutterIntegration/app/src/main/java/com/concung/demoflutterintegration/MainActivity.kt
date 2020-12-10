@@ -1,5 +1,6 @@
 package com.concung.demoflutterintegration
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import io.flutter.embedding.android.FlutterActivity
@@ -16,12 +17,22 @@ class MainActivity : AppCompatActivity() {
     private fun setupUIEvents() {
         btnGotoFlutter.setOnClickListener {
             startActivity(
-//                    FlutterActivity.createDefaultIntent(this)
-                    // Faster launch
-                    FlutterActivity
-                            .withCachedEngine("my_engine_id")
-                            .build(this)
+                FlutterActivity.createDefaultIntent(this)
             )
+        }
+
+        btnGotoFlutterCached.setOnClickListener {
+            startActivity(
+                // Faster launch
+                FlutterActivity
+                    .withCachedEngine("my_engine_id")
+                    .build(this)
+            )
+        }
+
+        btnGotoPager.setOnClickListener {
+            val intent = Intent(this@MainActivity, PagerActivity::class.java)
+            startActivity(intent)
         }
     }
 }

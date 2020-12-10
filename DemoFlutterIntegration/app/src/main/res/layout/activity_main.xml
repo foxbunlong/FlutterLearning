@@ -11,9 +11,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go to Flutter"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnGotoFlutterCached"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnGotoFlutterCached"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Flutter with cached engine"
+        app:layout_constraintBottom_toTopOf="@+id/btnGotoPager"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGotoFlutter" />
+
+    <Button
+        android:id="@+id/btnGotoPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Pager activity with Flutter Fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGotoFlutterCached" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
