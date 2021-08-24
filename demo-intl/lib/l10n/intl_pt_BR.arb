@@ -1,0 +1,23 @@
+{
+  "@@locale": "pt_BR",
+  "formPageAppBarTitle": "Calculadora de Morte por Cafeína",
+  "firstSuggestedDrinkName": "Café Coado (Xícara)",
+  "secondSuggestedDrinkName": "Espresso (Shot)",
+  "thirdSuggestedDrinkName": "Pingado (Copo Americano)",
+  "formPageWeightInputLabel": "Peso Corporal",
+  "formPageWeightInputSuffix": "quilos",
+  "formPageRadioListLabel": "Escolha uma bebida",
+  "formPageActionButtonTitle": "CALCULAR",
+  "formPageCustomDrinkRadioTitle": "Outra",
+  "formPageCustomDrinkServingSizeInputLabel": "Tamanho",
+  "formPageCustomDrinkServingSizeInputSuffix": "ml",
+  "formPageCustomDrinkCaffeineAmountInputLabel": "Cafeína",
+  "formPageCustomDrinkCaffeineAmountInputSuffix": "mg",
+  "resultsPageAppBarTitle": "Dosagens",
+  "resultsPageLethalDosageTitle": "Dose Letal",
+  "resultsPageLethalDosageMessage": "{quantity, plural, one{Uma porção.} other{{formattedNumber} porções no seu sistema de uma vez.}}",
+  "resultsPageSafeDosageTitle": "Limite Seguro Diário",
+  "resultsPageSafeDosageMessage": "{quantity, plural, one{Uma porção por dia.} other{{formattedNumber} porções por dia.}}",
+  "resultsPageFirstDisclaimer": "*Baseado em uma porção de {servingSize} ml.",
+  "resultsPageSecondDisclaimer": "*Se aplica a pessoas com 18 anos ou mais. Essa calculadora não substitui conselhos médicos profissionais."
+}

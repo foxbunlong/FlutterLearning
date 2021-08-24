@@ -1,0 +1,23 @@
+{
+  "@@locale": "en_US",
+  "formPageAppBarTitle": "Death by Caffeine Calculator",
+  "firstSuggestedDrinkName": "Drip Coffee (Cup)",
+  "secondSuggestedDrinkName": "Espresso (Shot)",
+  "thirdSuggestedDrinkName": "Latte (Mug)",
+  "formPageWeightInputLabel": "Body Weight",
+  "formPageWeightInputSuffix": "pounds",
+  "formPageRadioListLabel": "Choose a drink",
+  "formPageActionButtonTitle": "CALCULATE",
+  "formPageCustomDrinkRadioTitle": "Other",
+  "formPageCustomDrinkServingSizeInputLabel": "Serving Size",
+  "formPageCustomDrinkServingSizeInputSuffix": "fl. oz",
+  "formPageCustomDrinkCaffeineAmountInputLabel": "Caffeine",
+  "formPageCustomDrinkCaffeineAmountInputSuffix": "mg",
+  "resultsPageAppBarTitle": "Dosages",
+  "resultsPageLethalDosageTitle": "Lethal Dosage",
+  "resultsPageFirstDisclaimer": "*Based on {servingSize} fl. oz serving.",
+  "resultsPageLethalDosageMessage": "{quantity, plural, one{One serving.} other{{formattedNumber} servings in your system at one time.}}",
+  "resultsPageSafeDosageTitle": "Daily Safe Maximum",
+  "resultsPageSafeDosageMessage": "{quantity, plural, one{One serving per day.} other{{formattedNumber} servings per day.}}",
+  "resultsPageSecondDisclaimer": "*Applies to age 18 and over. This calculator does not replace professional medical advice."
+}

@@ -1,0 +1,25 @@
+name: buzzkill
+description: Shows how much of a caffeinated drink is safe and how much could be deadly based on a person’s body weight.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: 0.1.3
+  intl: 0.17.0
+  flutter_localizations:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+flutter_intl:
+  enabled: true
+  main_locale: en_US
